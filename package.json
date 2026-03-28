@@ -1,0 +1,53 @@
+{
+  "name": "portfolio-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Modern developer portfolio with React and Vue versions",
+  "author": "Bruno Xavier",
+  "license": "MIT",
+  "workspaces": [
+    "packages/shared",
+    "packages/react-portfolio",
+    "packages/vue-portfolio"
+  ],
+  "scripts": {
+    "dev:react": "pnpm --filter react-portfolio dev",
+    "dev:vue": "pnpm --filter vue-portfolio dev",
+    "dev": "concurrently \"pnpm dev:react\" \"pnpm dev:vue\"",
+    "build:react": "pnpm --filter react-portfolio build",
+    "build:vue": "pnpm --filter vue-portfolio build",
+    "build": "pnpm run build:shared && pnpm run build:react && pnpm run build:vue",
+    "build:shared": "pnpm --filter @portfolio/shared build",
+    "preview:react": "pnpm --filter react-portfolio preview",
+    "preview:vue": "pnpm --filter vue-portfolio preview",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,json,css,md}\"",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  }
+}

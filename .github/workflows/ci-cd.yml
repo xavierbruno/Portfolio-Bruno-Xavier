@@ -1,0 +1,136 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Lint code
+      run: pnpm lint
+
+    - name: Run tests
+      run: pnpm test
+
+    - name: Build shared package
+      run: pnpm --filter @portfolio/shared build
+
+    - name: Build React portfolio
+      run: pnpm --filter react-portfolio build
+
+    - name: Build Vue portfolio
+      run: pnpm --filter vue-portfolio build
+
+    - name: Upload React build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: react-build
+        path: packages/react-portfolio/dist
+
+    - name: Upload Vue build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: vue-build
+        path: packages/vue-portfolio/dist
+
+  deploy-react-vercel:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build shared package
+      run: pnpm --filter @portfolio/shared build
+
+    - name: Build React portfolio
+      run: pnpm --filter react-portfolio build
+
+    - name: Deploy React to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_REACT_PROJECT_ID }}
+        working-directory: ./packages/react-portfolio
+        production-deploy: true
+
+  deploy-vue-vercel:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build shared package
+      run: pnpm --filter @portfolio/shared build
+
+    - name: Build Vue portfolio
+      run: pnpm --filter vue-portfolio build
+
+    - name: Deploy Vue to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_VUE_PROJECT_ID }}
+        working-directory: ./packages/vue-portfolio
+        production-deploy: true
