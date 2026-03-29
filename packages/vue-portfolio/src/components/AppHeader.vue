@@ -94,11 +94,11 @@ onUnmounted(() => {
             v-for="item in navItems"
             :key="item.path"
             :to="item.path"
-            @click="handleNavClick(item.path)"
             :class="[
               'text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400',
               route.path === item.path && 'text-primary-600 dark:text-primary-400',
             ]"
+            @click="handleNavClick(item.path)"
           >
             {{ item.label }}
           </router-link>
@@ -111,8 +111,8 @@ onUnmounted(() => {
             <BaseButton
               variant="ghost"
               size="sm"
-              @click="isLangMenuOpen = !isLangMenuOpen"
               class="p-2"
+              @click="isLangMenuOpen = !isLangMenuOpen"
             >
               <IconGlobe class="w-5 h-5" />
             </BaseButton>
@@ -124,11 +124,11 @@ onUnmounted(() => {
                 <button
                   v-for="lang in languages"
                   :key="lang.code"
-                  @click="changeLanguage(lang.code)"
                   :class="[
                     'block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-dark-700',
                     locale === lang.code && 'bg-gray-100 dark:bg-dark-700',
                   ]"
+                  @click="changeLanguage(lang.code)"
                 >
                   {{ lang.name }}
                 </button>
@@ -137,7 +137,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Theme Toggle -->
-          <BaseButton variant="ghost" size="sm" @click="themeStore.toggleTheme" class="p-2">
+          <BaseButton variant="ghost" size="sm" class="p-2" @click="themeStore.toggleTheme">
             <IconSun v-if="themeStore.isDark" class="w-5 h-5" />
             <IconMoon v-else class="w-5 h-5" />
           </BaseButton>
@@ -146,8 +146,8 @@ onUnmounted(() => {
           <BaseButton
             variant="ghost"
             size="sm"
-            @click="isMobileMenuOpen = !isMobileMenuOpen"
             class="p-2 lg:hidden"
+            @click="isMobileMenuOpen = !isMobileMenuOpen"
           >
             <IconX v-if="isMobileMenuOpen" class="w-5 h-5" />
             <IconMenu v-else class="w-5 h-5" />
@@ -162,8 +162,8 @@ onUnmounted(() => {
             v-for="item in navItems"
             :key="item.path"
             :to="item.path"
-            @click="handleNavClick(item.path)"
             class="block py-2 text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400"
+            @click="handleNavClick(item.path)"
           >
             {{ item.label }}
           </router-link>

@@ -10,6 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   fullWidth?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   motionProps?: any;
 }
 

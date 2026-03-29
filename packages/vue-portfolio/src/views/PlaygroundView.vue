@@ -45,31 +45,31 @@ const components = [
           <div>
             <h3 class="text-xl font-semibold mb-4">Button Variants</h3>
             <div class="flex flex-wrap gap-4">
-              <BaseButton variant="primary">Primary</BaseButton>
-              <BaseButton variant="secondary">Secondary</BaseButton>
-              <BaseButton variant="ghost">Ghost</BaseButton>
-              <BaseButton variant="danger">Danger</BaseButton>
-              <BaseButton variant="success">Success</BaseButton>
+              <BaseButton variant="primary"> Primary </BaseButton>
+              <BaseButton variant="secondary"> Secondary </BaseButton>
+              <BaseButton variant="ghost"> Ghost </BaseButton>
+              <BaseButton variant="danger"> Danger </BaseButton>
+              <BaseButton variant="success"> Success </BaseButton>
             </div>
           </div>
 
           <div>
             <h3 class="text-xl font-semibold mb-4">Button Sizes</h3>
             <div class="flex flex-wrap items-center gap-4">
-              <BaseButton size="xs">Extra Small</BaseButton>
-              <BaseButton size="sm">Small</BaseButton>
-              <BaseButton size="md">Medium</BaseButton>
-              <BaseButton size="lg">Large</BaseButton>
-              <BaseButton size="xl">Extra Large</BaseButton>
+              <BaseButton size="xs"> Extra Small </BaseButton>
+              <BaseButton size="sm"> Small </BaseButton>
+              <BaseButton size="md"> Medium </BaseButton>
+              <BaseButton size="lg"> Large </BaseButton>
+              <BaseButton size="xl"> Extra Large </BaseButton>
             </div>
           </div>
 
           <div>
             <h3 class="text-xl font-semibold mb-4">Button States</h3>
             <div class="flex flex-wrap gap-4">
-              <BaseButton :is-loading="true">Loading</BaseButton>
-              <BaseButton :disabled="true">Disabled</BaseButton>
-              <BaseButton :full-width="true">Full Width</BaseButton>
+              <BaseButton :is-loading="true"> Loading </BaseButton>
+              <BaseButton :disabled="true"> Disabled </BaseButton>
+              <BaseButton :full-width="true"> Full Width </BaseButton>
             </div>
           </div>
         </div>

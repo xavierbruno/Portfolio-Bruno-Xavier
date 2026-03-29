@@ -9,6 +9,7 @@ interface EmailData {
   message: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const WEB3FORMS_ACCESS_KEY = (import.meta as any).env.VITE_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE';
 
 export async function sendEmail(data: EmailData): Promise<boolean> {
