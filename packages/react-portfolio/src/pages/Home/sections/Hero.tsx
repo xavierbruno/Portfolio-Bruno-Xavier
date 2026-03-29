@@ -10,7 +10,7 @@ export default function Hero() {
   const socialLinks = [
     { icon: Code2, href: personalInfo.social.github, label: 'GitHub' },
     { icon: Link2, href: personalInfo.social.linkedin, label: 'LinkedIn' },
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
+    { icon: Mail, href: '#contact', label: 'Email' },
   ];
 
   return (
@@ -83,9 +83,11 @@ export default function Hero() {
             >
               {t('hero.cta.primary')}
             </Button>
-            <Button variant="secondary" size="lg" leftIcon={<Download className="w-5 h-5" />}>
-              {t('hero.cta.secondary')}
-            </Button>
+            <a href="/resume.pdf" download="curriculum-vitae-bruno-xavier.pdf">
+              <Button variant="secondary" size="lg" leftIcon={<Download className="w-5 h-5" />}>
+                {t('hero.cta.secondary')}
+              </Button>
+            </a>
           </motion.div>
 
           {/* Social Links */}
@@ -99,8 +101,7 @@ export default function Hero() {
               <a
                 key={social.label}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(social.href.startsWith('#') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="p-3 bg-gray-100 dark:bg-dark-800 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
                 aria-label={social.label}
               >
