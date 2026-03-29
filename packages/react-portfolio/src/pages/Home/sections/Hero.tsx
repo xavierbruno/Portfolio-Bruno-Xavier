@@ -101,7 +101,7 @@ export default function Hero() {
               <a
                 key={social.label}
                 href={social.href}
-                {...(social.href.startsWith('#') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                {...(social.href?.startsWith('#') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="p-3 bg-gray-100 dark:bg-dark-800 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
                 aria-label={social.label}
               >
