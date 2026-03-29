@@ -35,9 +35,11 @@ export default function About() {
                   {personalInfo.bio}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button leftIcon={<Download className="w-5 h-5" />}>
-                    {t('about.downloadResume')}
-                  </Button>
+                  <a href="/resume.pdf" download="curriculum-vitae-bruno-xavier.pdf">
+                    <Button leftIcon={<Download className="w-5 h-5" />}>
+                      {t('about.downloadResume')}
+                    </Button>
+                  </a>
                 </div>
               </div>
               <div className="md:w-1/3">

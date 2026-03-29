@@ -36,8 +36,11 @@ export default function Contact() {
   const socialLinks = [
     { icon: Code2, href: personalInfo.social.github, label: 'GitHub' },
     { icon: Link2, href: personalInfo.social.linkedin, label: 'LinkedIn' },
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
-    { icon: Phone, href: `tel:${personalInfo.phone}`, label: 'Phone' },
+  ];
+
+  const contactInfo = [
+    { icon: Mail, value: personalInfo.email, label: 'Email' },
+    { icon: Phone, value: personalInfo.phone, label: 'Phone' },
   ];
 
   return (
@@ -139,6 +142,18 @@ export default function Contact() {
                           <social.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                           <span>{social.label}</span>
                         </a>
+                      ),
+                  )}
+                  {contactInfo.map(
+                    (info) =>
+                      info.value && (
+                        <div
+                          key={info.label}
+                          className="flex items-center gap-4 p-3 rounded-lg"
+                        >
+                          <info.icon className="w-6 h-6 text-primary-600 dark:text-primary-400 shrink-0" />
+                          <span className="text-gray-700 dark:text-gray-300">{info.value}</span>
+                        </div>
                       ),
                   )}
                 </div>
