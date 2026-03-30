@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { prefersDarkMode } from '@portfolio/shared';
 
 interface ThemeStore {
   isDark: boolean;
