@@ -42,7 +42,7 @@ export default function About() {
                   </a>
                 </div>
               </div>
-              <div className="md:w-1/3">
+              <div className="md:w-1/3 hidden dark:block">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-2xl opacity-50"></div>
                   <img
