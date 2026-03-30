@@ -3,8 +3,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [vue()],
+  base: command === 'build' ? '/vue/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -13,9 +14,8 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    open: true,
+    open: false,
   },
-  base: '/vue/',
   build: {
     outDir: 'dist',
     sourcemap: true,
@@ -25,4 +25,4 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
   },
-});
+}));

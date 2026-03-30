@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+const VuePlayground = lazy(() => import('./VuePlayground'));
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@portfolio/shared';
 import Button from '@/components/ui/Button';
@@ -230,11 +231,6 @@ function PricingCard({ featured }: { featured?: boolean }) {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const VUE_PLAYGROUND_URL = (import.meta as any).env?.DEV
-  ? 'http://localhost:3001/playground'
-  : '/vue/playground';
-
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function ComponentPlayground() {
   const { t } = useTranslation();
@@ -304,19 +300,12 @@ export default function ComponentPlayground() {
           </div>
         </div>
 
-        {/* Vue iframe */}
+        {/* Vue Playground */}
         {framework === 'vue' && (
-          <div className="glass rounded-xl overflow-hidden" style={{ height: '80vh' }}>
-            <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-200 dark:border-dark-600 text-sm text-gray-500">
-              <span className="text-green-500 font-semibold">💚 Vue.js</span>
-              <span>— Component Playground</span>
-            </div>
-            <iframe
-              src={VUE_PLAYGROUND_URL}
-              className="w-full"
-              style={{ height: 'calc(80vh - 41px)', border: 'none' }}
-              title="Vue Playground"
-            />
+          <div className="glass rounded-xl p-8">
+            <Suspense fallback={<div className="flex justify-center py-20"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" /></div>}>
+              <VuePlayground />
+            </Suspense>
           </div>
         )}
 

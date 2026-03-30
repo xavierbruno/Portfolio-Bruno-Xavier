@@ -14,6 +14,13 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    proxy: {
+      '/vue': {
+        target: 'http://localhost:3001',
+        rewrite: (path) => path.replace(/^\/vue/, ''),
+        ws: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',
