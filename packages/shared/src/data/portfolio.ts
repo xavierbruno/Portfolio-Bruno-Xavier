@@ -81,7 +81,7 @@ export const personalInfo: PersonalInfo = {
   location: 'Rio de Janeiro, Brazil',
   bio: 'Skilled professional with 5+ years of experience in software development, with a focus on front-end, working on prototyping services, layout creation, screen development, and integration with APIs or databases. Some of my interpersonal skills include being proactive, organized, having strong communication skills, and maintaining empathetic relationships with clients.',
   shortBio: 'Front-end Developer with 5+ years of experience.',
-  avatar: 'https://avatars.githubusercontent.com/u/placeholder',
+  avatar: '/avatar.png',
   resume: '/resume.pdf',
   social: {
     github: 'https://github.com/xavierbruno',
