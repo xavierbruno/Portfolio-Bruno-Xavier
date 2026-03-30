@@ -67,6 +67,7 @@ export interface Translations {
     minRead: string;
     publishedOn: string;
     viewOnDevTo: string;
+    noPosts: string;
   };
   contact: {
     title: string;
@@ -185,6 +186,7 @@ export const translations: Record<Language, Translations> = {
       minRead: 'min read',
       publishedOn: 'Published on',
       viewOnDevTo: 'View on Dev.to',
+      noPosts: 'No posts found.',
     },
     contact: {
       title: 'Get In Touch',
@@ -301,6 +303,7 @@ export const translations: Record<Language, Translations> = {
       minRead: 'min de leitura',
       publishedOn: 'Publicado em',
       viewOnDevTo: 'Ver no Dev.to',
+      noPosts: 'Nenhum post encontrado.',
     },
     contact: {
       title: 'Entre em Contato',
@@ -417,6 +420,7 @@ export const translations: Record<Language, Translations> = {
       minRead: 'min de lectura',
       publishedOn: 'Publicado el',
       viewOnDevTo: 'Ver en Dev.to',
+      noPosts: 'No se encontraron posts.',
     },
     contact: {
       title: 'Ponte en Contacto',
