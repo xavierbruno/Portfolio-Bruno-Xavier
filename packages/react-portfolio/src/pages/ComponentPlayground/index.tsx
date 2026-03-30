@@ -230,9 +230,15 @@ function PricingCard({ featured }: { featured?: boolean }) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const VUE_PLAYGROUND_URL = (import.meta as any).env?.DEV
+  ? 'http://localhost:3001/playground'
+  : '/vue/playground';
+
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function ComponentPlayground() {
   const { t } = useTranslation();
+  const [framework, setFramework] = useState<'react' | 'vue'>('react');
   const [activeTab, setActiveTab] = useState('buttons');
 
   // Input state
@@ -278,6 +284,44 @@ export default function ComponentPlayground() {
           <p className="text-lg text-gray-600 dark:text-gray-400">{t('playground.subtitle')}</p>
         </div>
 
+        {/* Framework Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex rounded-xl overflow-hidden border border-gray-200 dark:border-dark-600">
+            {(['react', 'vue'] as const).map((fw) => (
+              <button
+                key={fw}
+                onClick={() => setFramework(fw)}
+                className={cn(
+                  'px-6 py-2.5 text-sm font-semibold transition-colors flex items-center gap-2',
+                  framework === fw
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-white dark:bg-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700'
+                )}
+              >
+                {fw === 'react' ? '⚛' : '💚'} {fw.charAt(0).toUpperCase() + fw.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Vue iframe */}
+        {framework === 'vue' && (
+          <div className="glass rounded-xl overflow-hidden" style={{ height: '80vh' }}>
+            <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-200 dark:border-dark-600 text-sm text-gray-500">
+              <span className="text-green-500 font-semibold">💚 Vue.js</span>
+              <span>— Component Playground</span>
+            </div>
+            <iframe
+              src={VUE_PLAYGROUND_URL}
+              className="w-full"
+              style={{ height: 'calc(80vh - 41px)', border: 'none' }}
+              title="Vue Playground"
+            />
+          </div>
+        )}
+
+        {framework === 'react' && (
+          <>
         <div className="flex flex-wrap gap-2 justify-center mb-8">
           {components.map((component) => (
             <Button
@@ -500,6 +544,8 @@ export default function ComponentPlayground() {
           )}
 
         </div>
+          </>
+        )}
       </div>
     </div>
   );

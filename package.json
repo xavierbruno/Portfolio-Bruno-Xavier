@@ -16,7 +16,7 @@
     "dev": "concurrently \"pnpm dev:react\" \"pnpm dev:vue\"",
     "build:react": "pnpm --filter react-portfolio build",
     "build:vue": "pnpm --filter vue-portfolio build",
-    "build": "pnpm run build:shared && pnpm run build:react && pnpm run build:vue",
+    "build": "pnpm run build:shared && pnpm run build:vue && pnpm run build:react",
     "build:shared": "pnpm --filter @portfolio/shared build",
     "preview:react": "pnpm --filter react-portfolio preview",
     "preview:vue": "pnpm --filter vue-portfolio preview",
