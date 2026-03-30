@@ -34,7 +34,7 @@
 @layer components {
   /* Gradient Text */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent pb-1;
   }
 
   /* Glass Morphism */
